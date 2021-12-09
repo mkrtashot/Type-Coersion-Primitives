@@ -2,24 +2,42 @@
 
 function float(value) {
   let arr = [];
-  if (value * 1) {
-    return value - (value % 1);
-  }
-  for (let i = 0; i < value.length; i++) {
-    if (value[i] === "0") {
-      arr.push(value[i]);
-      continue;
-    }
-    if (value[i] === ".") {
-      arr.push(value[i]);
-      continue;
-    }
-    if (value[i] * 1) {
-      arr.push(value[i]);
+  value += "";
+  let valueArr = value.split(" ");
+
+  for (let i = 0; i < valueArr.length; i++) {
+    if (valueArr[i] === "") {
+      valueArr.shift();
+      i--;
     } else {
       break;
     }
   }
+  valueArr = valueArr[0];
+  valueArr += "";
+
+  if (valueArr * 1) {
+    return valueArr;
+  }
+  for (let i = 0; i < valueArr.length; i++) {
+    if (valueArr[i] === "0") {
+      arr.push(valueArr[i]);
+      continue;
+    }
+    if (valueArr[i] === ".") {
+      arr.push(valueArr[i]);
+      continue;
+    }
+    if (valueArr[i] * 1) {
+      arr.push(valueArr[i]);
+    } else {
+      break;
+    }
+  }
+  console.log(valueArr);
   arr = arr.join("");
   return arr;
 }
+
+console.log(float("12.21312 12312.21"));
+console.log(parseFloat("123.123 211 21"));
